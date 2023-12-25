@@ -1,4 +1,5 @@
 from bs4 import BeautifulSoup
+import time
 
 BLUE = "\033[0;34m"
 BOLD = "\033[1m"
@@ -19,6 +20,7 @@ class QuizQuestion:
             self.right = right
 
 def main():
+    start_time = time.time()
     html_doc = open('01.html').read()
     soup = BeautifulSoup(html_doc, 'html.parser')
 
@@ -57,6 +59,10 @@ def main():
                     quiz.remove(question)
             except:
                 pass
+    end_time = time.time()
+    elapsed_time = end_time - start_time
+
+    print(BOLD + BLUE + f"\nQuiz completed in {elapsed_time:.2f} seconds." + END)
 
 if __name__ == "__main__":
     main()
